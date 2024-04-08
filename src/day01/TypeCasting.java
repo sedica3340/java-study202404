@@ -39,5 +39,10 @@ public class TypeCasting {
         float f1 = 3.14F;
         double f2 = 5.5;
         double v1 = f1 - f2;
+
+        char cc = 'A';
+        int plusNum = 3;
+        char r4 = (char) (cc+ plusNum);
+        System.out.println("r4 = " + r4);
     }
 }
