@@ -18,7 +18,7 @@ public class ArrayQuiz02 {
                 System.out.println("최종 정보: " + Arrays.toString(nickList));
                 break;
             }
-            for (int i = 0; i < nickList.length - 1; i++) {
+            for (int i = 0; i < nickList.length; i++) {
                 if (nick.equals(nickList[i])) {
                     System.out.println(nickList[i] + "의 별명을 삭제합니다.");
                     for (int j = i; j < nickList.length - 1; j++) {
@@ -38,3 +38,4 @@ public class ArrayQuiz02 {
         }
     }
 }
+//
