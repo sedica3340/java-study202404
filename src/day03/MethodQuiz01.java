@@ -23,13 +23,12 @@ public class MethodQuiz01 {
     }
 
     static int indexOf(String el) {
-        int index = -1;
         for (int i = 0; i < foods.length; i++) {
             if (el.equals(foods[i])) {
-                index = i;
+                return i;
             }
         }
-        return index;
+        return -1;
     }
 
     static void remove(String el) {
@@ -49,19 +48,15 @@ public class MethodQuiz01 {
     }
 
     static boolean include(String el) {
-        boolean result = false;
-        if (indexOf(el) != -1) {
-            result = true;
-        }
-        return result;
+        return indexOf(el) != -1;
     }
 
     static void insert(int index, String el) {
         String[] temp = new String[foods.length + 1];
         for (int i = 0; i < foods.length + 1; i++) {
-            if(i < index) {
+            if (i < index) {
                 temp[i] = foods[i];
-            } else if(i == index) {
+            } else if (i == index) {
                 temp[i] = el;
             } else {
                 temp[i] = foods[i - 1];
@@ -74,6 +69,7 @@ public class MethodQuiz01 {
     static void modify(int index, String el) {
         foods[index] = el;
     }
+
     public static void main(String[] args) {
 
         printFoods();
