@@ -13,7 +13,7 @@ public class StringCompare {
         System.out.println("myName = " + myName);
         System.out.println("inputName = " + inputName);
 
-//        char[] nickName = {'축','구','감','자'};
+//        char[] nickName = {'&#xCD95;','&#xAD6C;','&#xAC10;','&#xC790;'};
 //        String nick = new String(nickName);
 //        System.out.println(nick);
 
