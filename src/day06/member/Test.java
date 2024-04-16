@@ -16,5 +16,16 @@ public class Test {
 
         System.out.println("m1 = " + m1);
         System.out.println("m2 = " + m2);
+        System.out.println("=============================");
+        MemberRepository mr = new MemberRepository();
+        MemberView mv = new MemberView();
+
+        Member newMember = new Member("ddd@fff.com", "4321", "찰떡이", "남성", 13);
+
+        mr.addNewMember(newMember);
+
+        mv.showMembers();
+
+
     }
 }
