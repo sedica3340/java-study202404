@@ -10,4 +10,8 @@ public class SimpleInput {
         System.out.print(message);
         return sc.nextLine();
     }
+    public void stop() {
+        System.out.println("\n계속하시려면 엔터");
+        sc.nextLine();
+    }
 }
