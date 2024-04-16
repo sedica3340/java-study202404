@@ -2,13 +2,15 @@ package day06.member;
 
 // 역할: 회원 배열을 관리하는 끄라스 - 회원 데이터 저장소
 public class MemberRepository {
-    static Member[] members;
+    static Member[] members; // 현재 관리되는 회원들
+    static Member[] restoreList;
 
     MemberRepository() {
         this.members = new Member[3];
         members[0] = new Member("abc@def.com", "1234", "콩순이", "여성", 50);
         members[1] = new Member("qwe@def.com", "2345", "팥돌이", "남성", 40);
         members[2] = new Member("zxc@def.com", "3456", "밤순이", "여성", 30);
+        this.restoreList = new Member[0];
     }
     // 메서드
     // 회원정보 생성
@@ -54,25 +56,55 @@ public class MemberRepository {
         }
         return -1;
     }
+
     void changePW(int index, String newPW) {
         members[index].password = newPW;
     }
+
     void changeName(int index, String newName) {
         members[index].memberName = newName;
     }
+
     void tranceGender(int index, String newGender) {
         members[index].gender = newGender;
     }
 
     void remove(int index) {
         Member[] temp = new Member[members.length - 1];
+        Member[] temp2 = new Member[restoreList.length + 1];
         for (int i = 0; i < members.length; i++) {
             if (i < index) {
                 temp[i] = members[i];
             } else if (i > index) {
                 temp[i - 1] = members[i];
+            } else {
+                temp2[temp2.length - 1] = members[i];
             }
         }
         members = temp;
+        restoreList = temp2;
+    }
+
+    boolean restoreMember(String targetEmail) {
+        int i = 0;
+        for (Member m : restoreList) {
+            if (targetEmail.equals(m.email)) {
+                addNewMember(m);
+                Member[] temp = new Member[restoreList.length - 1];
+                if (temp.length != 0) {
+                    for (int j = 0; j < restoreList.length; j++) {
+                        if (j < i) {
+                            temp[j] = restoreList[j];
+                        } else if (j > i) {
+                            temp[j - 1] = restoreList[j];
+                        }
+                    }
+                }
+                restoreList = temp;
+                return true;
+            }
+            i++;
+        }
+        return false;
     }
 }

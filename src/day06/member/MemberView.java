@@ -50,11 +50,20 @@ public class MemberView {
     String showProgramMenu() {
         System.out.println("\n##### 회원 관리 시스템 #####");
         System.out.println("* 1. 회원 정보 등록하기");
-        System.out.println("* 2. 개별회원 정보 조회하기");
-        System.out.println("* 3. 전체회원 정보 조회하기");
-        System.out.println("* 4. 회원 정보 수정하기");
-        System.out.println("* 5. 회원 정보 삭제하기");
-        System.out.println("* 6. 프로그램 종료");
+        if (mr.members.length != 0) {
+            System.out.println("* 2. 개별회원 정보 조회하기");
+            System.out.println("* 3. 전체회원 정보 조회하기");
+            System.out.println("* 4. 회원 정보 수정하기");
+            System.out.println("* 5. 회원 정보 삭제하기");
+        } else {
+            System.out.println("2~5. 현재 회원이 없습니다.");
+        }
+        if (mr.restoreList.length != 0) {
+            System.out.println("* 6. 회원 정보 복구하기");
+        } else {
+            System.out.println("* 6. 복구할 회원 없음");
+        }
+        System.out.println("* 7. 프로그램 종료");
         System.out.println("======================");
 
         return si.input("- 메뉴 번호: ");
@@ -126,18 +135,49 @@ public class MemberView {
             String targetEmail = si.input("# 삭제할 회원의 이메일: ");
             int index = mr.getIndex(targetEmail);
             if (index >= 0) {
-                System.out.printf("# %s님의 정보를 정말 삭제하시겠습니까?", mr.members[index].memberName);
-                String userAnswer = si.input("[y/n]: ");
-                if (!userAnswer.equals("y")) {
-                    System.out.println("삭제를 취소하셨습니다.");
-                } else {
-                    System.out.printf("# %s님의 정보를 삭제합니다.", mr.members[index].memberName);
-                    mr.remove(index);
+                for (; true; ) {
+                    String userAnswer = si.input("비밀번호: ");
+                    if (!userAnswer.equals(mr.members[index].password)) {
+                        System.out.println("비밀번호가 틀렸습니다.");
+                    } else {
+                        System.out.printf("# %s님의 정보를 삭제합니다.", mr.members[index].memberName);
+                        mr.remove(index);
+                        break;
+                    }
                 }
                 break;
+
             } else {
                 System.out.println("존재하지 않는 이메일입니다.");
             }
         }
     }
+
+    void restore() {
+        outer: for (; true; ) {
+            String targetEmail = si.input("# 복구할 회원의 이메일: ");
+            for (Member m : mr.restoreList) {
+                if (!targetEmail.equals(m.email)) {
+                    System.out.println("존재하지 않는 회원입니다.");
+                } else {
+                    for (; true; ) {
+                        String userAnswer = si.input("비밀번호: ");
+                        if (userAnswer.equals(m.password)) {
+                            mr.restoreMember(targetEmail);
+                            System.out.printf("%s님의 정보가 복구되었습니다.", mr.members[mr.members.length - 1].memberName);
+                            break outer;
+                        } else {
+                            System.out.println("비밀번호가 틀렸습니다.");
+                        }
+                    }
+                }
+            }
+//            if (!flag) System.out.println("존재하지 않는 회원입니다.");
+//            else {
+//                System.out.printf("%s님의 정보가 복구되었습니다.", mr.members[mr.members.length - 1].memberName);
+//                break;
+
+        }
+    }
+
 }
