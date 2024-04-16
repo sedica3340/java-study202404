@@ -28,7 +28,7 @@ public class MemberController {
                     mv.showMembers();
                     break;
                 case "4":
-                    mv.changePassword();
+                    mv.change();
                     break;
                 case "5":
                     mv.removeMember();

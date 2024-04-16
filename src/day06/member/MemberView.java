@@ -87,7 +87,7 @@ public class MemberView {
         }
     }
 
-    void changePassword() {
+    void change() {
         for (; true; ) {
             String targetEmail = si.input("수정할 대상의 이메일: ");
             int index = mr.getIndex(targetEmail);
