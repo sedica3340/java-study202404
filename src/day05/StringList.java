@@ -1,5 +1,7 @@
 package day05;
 
+import day06.member.Member;
+
 import java.util.Arrays;
 
 // 스트링 배열을 관리하는 객체의 설계도
