@@ -7,9 +7,7 @@ public class Warrior extends Player {
     int rage;
 
     public Warrior(String nickname) {
-        this.nickname = nickname;
-        this.level = 1;
-        this.hp = 50;
+        super(nickname);
         this.rage = 100;
     }
 
