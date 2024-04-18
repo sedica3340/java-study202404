@@ -1,0 +1,27 @@
+package day08.final_.practice;
+
+public enum WeatherConstants {
+    MAX_TEMPERATURE_ALERT(40.0),
+    MIN_TEMPERATURE_ALERT(-10.0),
+    PRECIPITATION_ALERT(50.0);
+
+    private double numericData;
+    WeatherConstants(double numericData) {
+        this.numericData = numericData;
+    }
+
+    public double getNumericData() {
+        return numericData;
+    }
+    //    static final double MAX_TEMPERATURE_ALERT;
+//    static final double MIN_TEMPERATURE_ALERT;
+//    static final double PRECIPITATION_ALERT;
+//    static {
+//        MAX_TEMPERATURE_ALERT = 40.0;
+//        MIN_TEMPERATURE_ALERT = -10.0;
+//        PRECIPITATION_ALERT = 50.0;
+//    }
+
+//    private WeatherConstants() {
+//    }
+}
