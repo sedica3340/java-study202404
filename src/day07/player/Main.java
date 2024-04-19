@@ -12,5 +12,8 @@ public class Main {
         m.showStatus();
         h.showStatus();
 
+        System.out.println("=====================");
+
+        m.thunderbolt(w,h,m,new Mage("딸기곤듀"), new Warrior("딸기겅듀"));
     }
 }
