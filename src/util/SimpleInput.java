@@ -10,11 +10,11 @@ public class SimpleInput {
         sc = new Scanner(System.in);
     }
     //문자열 입력을 처리
-    static public String input(String message) {
+    public static String input(String message) {
         System.out.print(message);
         return sc.nextLine();
     }
-    public void stop() {
+    public static void stop() {
         System.out.println("\n계속하시려면 엔터");
         sc.nextLine();
     }
