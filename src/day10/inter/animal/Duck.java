@@ -1,6 +1,6 @@
 package day10.inter.animal;
 
-public class Duck implements Pet{
+public class Duck extends Animal implements Pet{
     @Override
     public void handle() {
 

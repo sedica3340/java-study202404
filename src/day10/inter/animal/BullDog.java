@@ -1,6 +1,6 @@
 package day10.inter.animal;
 
-public class BullDog implements Pet, Huntable, Wild{
+public class BullDog extends Animal implements Pet, Aggressive{
     @Override
     public void handle() {
 
