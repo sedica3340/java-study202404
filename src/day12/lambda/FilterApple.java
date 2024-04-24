@@ -27,8 +27,36 @@ public class FilterApple {
 
         return filteredApples;
     }
-    public static List<Apple> filterApplesByWeight(List<Apple> basket, int weight) {
-        return null;
+
+    /**
+     * @solution = 동작(함수,메서드)을 추상화시켜 파라미터화 한다.
+     * @param basket
+     * @return
+     */
+    public static List<Apple> filterApples(List<Apple> basket, ApplePredicate p) {
+        List<Apple> filteredApples = new ArrayList<>();
+        // 반복문과 조건문으로 필터링
+        for (Apple apple : basket) {
+            if(p.test(apple)) {
+                filteredApples.add(apple);
+            }
+
+        }
+
+        return filteredApples;
+    }
+
+    public static <T> List<T> filter(List<T> list, GenericPredicate<T> p) {
+        List<T> filteredList = new ArrayList<>();
+        // 반복문과 조건문으로 필터링
+        for (T t : list) {
+            if(p.test(t)) {
+                filteredList.add(t);
+            }
+
+        }
+
+        return filteredList;
     }
 
 }
