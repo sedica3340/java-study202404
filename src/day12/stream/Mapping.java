@@ -1,6 +1,7 @@
 package day12.stream;
 
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class Mapping {
@@ -41,7 +42,7 @@ public class Mapping {
 
         List<Character> collect = words
                 .stream()
-                .map(w -> w.charAt(0))
+                .map(w -> w.charAt(1))
                 .collect(Collectors.toList());
         System.out.println(collect);
 
