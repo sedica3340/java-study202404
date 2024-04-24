@@ -18,6 +18,7 @@ public class ArtistView {
 
     // 프로그램 실행
     public static void start() {
+        repository.load();
         for (; true; ) {
             String userInput = menuOpen();
 
@@ -57,6 +58,8 @@ public class ArtistView {
         } else {
             System.out.printf(flag ? "%s님이 신규등록 되었습니다.\n" : "[%s]곡은 이미 등록된 노래입니다.\n", artistName, songName);
         }
+        // 등록된 내용 세이브파일에 저장하기
+        repository.save();
     }
 
     public static void searchSong() {
