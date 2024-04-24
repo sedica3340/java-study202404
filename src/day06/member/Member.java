@@ -12,7 +12,7 @@ public class Member {
     int age ;
     LocalDate regDate;
 
-    Member(String email, String password, String memberName, String gender, int age) {
+    public Member(String email, String password, String memberName, String gender, int age) {
         this.id = 1;
         this.regDate = LocalDate.now();
 

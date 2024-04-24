@@ -1,5 +1,9 @@
 package day06.member;
 
+import day12.io.FileExample;
+
+import java.io.FileWriter;
+
 // 역할: 회원 배열을 관리하는 끄라스 - 회원 데이터 저장소
 public class MemberRepository {
     static Member[] members; // 현재 관리되는 회원들
@@ -30,6 +34,16 @@ public class MemberRepository {
         }
         temp[temp.length - 1] = newMember;
         members = temp;
+
+        // 회원정보 텍스트파일에 저장하기
+        try (FileWriter fw = new FileWriter(FileExample.ROOT_PATH + "/hello/my-member.txt", true)) {
+
+            String newMemberInfo = String.format("%s,%s,%s,%s,%d\n",
+            newMember.email, newMember.memberName, newMember.password, newMember.gender, newMember.age);
+            fw.write(newMemberInfo);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
