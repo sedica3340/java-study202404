@@ -55,7 +55,38 @@ public class Mapping {
                 .collect(Collectors.toList());
 
         nameCaloriesList.forEach(nc -> System.out.println(nc));
+
+        System.out.println("========================");
+        List<nameType> nameType = Menu
+                .menuList
+                .stream()
+                .filter(dish -> dish.getCalories() >= 500)
+                .map(dish -> new nameType(dish))
+                .collect(Collectors.toList());
+        System.out.println(nameType);
+
+
+        int totalCalories = Menu
+                .menuList
+                .stream()
+                .mapToInt(dish -> dish.getCalories())
+                .sum();
+        System.out.println("totalCalories = " + totalCalories);
+
+        double meatAvg = Menu
+                .menuList
+                .stream()
+                .filter(dish -> dish.getType() == Dish.Type.MEAT)
+                .mapToInt(dish -> dish.getCalories())
+                .average()
+                .getAsDouble();
+        System.out.println("meatAvg = " + meatAvg);
     }
+
+
+
+
+
     public static class nameCalories {
         private final String name;
         private final int calories;
@@ -68,6 +99,31 @@ public class Mapping {
         public nameCalories(Dish dish) {
             this.name = dish.getName();
             this.calories = dish.getCalories();
+        }
+    }
+    public static class nameType {
+        private final String name;
+        private final String type;
+
+        public nameType(Dish dish) {
+            this.name = dish.getName();
+            this.type = dish.getType().getDesc();
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        @Override
+        public String toString() {
+            return "nameType{" +
+                    "name='" + name + '\'' +
+                    ", type='" + type + '\'' +
+                    '}';
         }
     }
 }
