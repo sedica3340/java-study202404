@@ -1,8 +1,6 @@
 package day12.stream.quiz1;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.OptionalDouble;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -126,20 +124,32 @@ public class Main {
 
 
         // 연습 11. "Cambridge"에서 거래하는 모든 거래자의 거래액을 연도별로 그룹화하여 출력하시오.
-        System.out.println("Year: 2021");
-        transactions
+//        List<Transaction> collect2021 = transactions
+//                .stream()
+//                .filter(transaction -> transaction.getYear() == 2021)
+//                .collect(Collectors.toList());
+//        List<Transaction> collect2022 = transactions
+//                .stream()
+//                .filter(transaction -> transaction.getYear() == 2022)
+//                .collect(Collectors.toList());
+        Map<Integer, List<Transaction>> cambridgeTradersMap = transactions
                 .stream()
-                .filter(transaction -> transaction.getYear() == 2021)
-                .map(ByYear::new)
-                .collect(Collectors.toList())
-                .forEach(System.out::println);
-        System.out.println("Year: 2022");
-        transactions
-                .stream()
-                .filter(transaction -> transaction.getYear() == 2022)
-                .map(ByYear::new)
-                .collect(Collectors.toList())
-                .forEach(System.out::println);
+                .filter(transaction -> transaction.getTrader().getCity().equals("Cambridge"))
+                .collect(Collectors.groupingBy(transaction -> transaction.getYear()));
+
+        cambridgeTradersMap
+                .forEach((key, value) -> {
+                    System.out.println("year: " + key);
+                    value.forEach(System.out::println);
+                });
+
+
+//        for (Integer year : cambridgeTradersMap.keySet()) {
+//            System.out.println("year: " + year);
+//            for (List<Transaction> value : cambridgeTradersMap.values()) {
+//                System.out.println(value);
+//            }
+//    }
 
 
         /*
@@ -166,6 +176,7 @@ public class Main {
 
         int sub = allValues.get(allValues.size() - 1) -  (int)allValues.get(0);
         System.out.println(sub);
+
     }
 
 

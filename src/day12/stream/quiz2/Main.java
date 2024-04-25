@@ -2,6 +2,7 @@ package day12.stream.quiz2;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -121,9 +122,18 @@ public class Main {
         System.out.println("가장 낮은 가격 제외 평균");
         System.out.println(avgSkipOne);
         // 연습 11: 모든 여행자의 여행 예약을 여행지별로 그룹화하여 출력하시오.
+        System.out.println("=========================");
+        Map<Destination, List<Booking>> groupByDestination = bookings
+                .stream()
+                .collect(Collectors.groupingBy(Booking::getDestination));
+        groupByDestination.forEach((key, value) -> {
+            System.out.println(key.getCity());
+            value.forEach(System.out::println);
+        });
 
 
         // 연습 12: 모든 예약 중 최고 가격과 최저 가격의 차이를 계산하시오.
+        System.out.println("===========================");
         List<Booking> allPrice = bookings
                 .stream()
                 .sorted(Comparator.comparing(Booking::getPrice))
